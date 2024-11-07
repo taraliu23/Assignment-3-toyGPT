@@ -21,8 +21,10 @@ def main(args):
     logger.info(f"GTID: {config.gtid}")
 
     # print an example instance of the dataset
-    train_dataset = SortDataset("train", length=config.digit_seq_len, num_digits=config.n_digits)
-    test_dataset = SortDataset("test", length=config.digit_seq_len, num_digits=config.n_digits)
+    train_dataset = SortDataset(
+        "train", length=config.digit_seq_len, num_digits=config.n_digits)
+    test_dataset = SortDataset(
+        "test", length=config.digit_seq_len, num_digits=config.n_digits)
 
     """
     Dataset for the Sort problem. E.g. for problem length 6:
@@ -52,12 +54,13 @@ def main(args):
         trainer.eval_split(test_dataset, max_batches=50)
 
     # let's run a random given sequence through the model as well
-    inputs = torch.tensor([[0, 0, 2, 1, 0, 1]], dtype=torch.long).to(trainer.device)
+    inputs = torch.tensor([[0, 0, 2, 1, 0, 1]],
+                          dtype=torch.long).to(trainer.device)
     solution = torch.sort(inputs[0])[0]
     assert inputs[0].nelement() == config.digit_seq_len
     with torch.no_grad():
         preds = model.inference(inputs, config.digit_seq_len)
-    preds = preds[:, config.digit_seq_len :]
+    preds = preds[:, config.digit_seq_len:]
 
     logger.info(f"input sequence   :{inputs.tolist()}")
     logger.info(f"predicted sorted :{preds.tolist()}")
@@ -71,7 +74,8 @@ if __name__ == "__main__":
     if len(sys.argv) == 2 and sys.argv[1].endswith(".json"):
         # If we pass only one argument to the script, and it's the path to a json file,
         # let's parse it to get our arguments.
-        (arguments,) = parser.parse_json_file(json_file=osp.abspath(sys.argv[1]))
+        (arguments,) = parser.parse_json_file(
+            json_file=osp.abspath(sys.argv[1]))
     else:
         (arguments,) = parser.parse_args_into_dataclasses()
 

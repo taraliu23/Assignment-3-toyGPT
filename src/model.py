@@ -25,7 +25,7 @@ class GELU(nn.Module):
         Returns the GELU activation of the input x.
         """
         # --- TODO: start of your code ---
-
+        return 0.5 * x * (1 + torch.tanh(math.sqrt(2 / math.pi) * (x + 0.044715 * x ** 3)))
         # --- TODO: end of your code ---
         raise NotImplementedError
 
@@ -56,17 +56,22 @@ class CausalSelfAttention(nn.Module):
         self.d_model = config.d_model
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
-        batch_size, seq_len, d_model = x.size()  # batch size, sequence length, embedding dimensionality (d_model)
+        # batch size, sequence length, embedding dimensionality (d_model)
+        batch_size, seq_len, d_model = x.size()
 
         # calculate query, key, values for all heads in batch and move head forward to be the batch dim
         q, k, v = self.input_projection(x).split(self.d_model, dim=2)
-        k = k.view(batch_size, seq_len, self.n_head, d_model // self.n_head).transpose(1, 2)  # (B, nh, T, hs)
-        q = q.view(batch_size, seq_len, self.n_head, d_model // self.n_head).transpose(1, 2)  # (B, nh, T, hs)
-        v = v.view(batch_size, seq_len, self.n_head, d_model // self.n_head).transpose(1, 2)  # (B, nh, T, hs)
+        k = k.view(batch_size, seq_len, self.n_head, d_model //
+                   self.n_head).transpose(1, 2)  # (B, nh, T, hs)
+        q = q.view(batch_size, seq_len, self.n_head, d_model //
+                   self.n_head).transpose(1, 2)  # (B, nh, T, hs)
+        v = v.view(batch_size, seq_len, self.n_head, d_model //
+                   self.n_head).transpose(1, 2)  # (B, nh, T, hs)
 
         # causal self-attention; Self-attend: (B, nh, T, hs) x (B, nh, hs, T) -> (B, nh, T, T)
         att = (q @ k.transpose(-2, -1)) * (1.0 / math.sqrt(k.size(-1)))
-        att = att.masked_fill(self.bias[:, :, :seq_len, :seq_len] == 0, float("-inf"))
+        att = att.masked_fill(
+            self.bias[:, :, :seq_len, :seq_len] == 0, float("-inf"))
         att = F.softmax(att, dim=-1)
         att = self.attn_dropout(att)
         y = att @ v  # (B, nh, T, T) x (B, nh, T, hs) -> (B, nh, T, hs)
@@ -96,7 +101,8 @@ class Block(nn.Module):
             )
         )
         m = self.mlp
-        self.mlpf = lambda x: m.dropout(m.c_proj(m.act(m.c_fc(x))))  # MLP forward
+        self.mlpf = lambda x: m.dropout(
+            m.c_proj(m.act(m.c_fc(x))))  # MLP forward
 
     def forward(self, x):
         x = x + self.attn(self.ln_1(x))
@@ -118,17 +124,20 @@ class GPT(nn.Module):
                 wte=nn.Embedding(config.n_digits, config.d_model),
                 wpe=nn.Embedding(config.gpt_seq_len, config.d_model),
                 drop=nn.Dropout(config.dropout),
-                h=nn.ModuleList([Block(config) for _ in range(config.n_layer)]),
+                h=nn.ModuleList([Block(config)
+                                for _ in range(config.n_layer)]),
                 ln_f=nn.LayerNorm(config.d_model),
             )
         )
-        self.output_head = nn.Linear(config.d_model, config.n_digits, bias=False)
+        self.output_head = nn.Linear(
+            config.d_model, config.n_digits, bias=False)
 
         # init all weights, and apply a special scaled init to the residual projections, per GPT-2 paper
         self.apply(self._init_weights)
         for pn, p in self.named_parameters():
             if pn.endswith("c_proj.weight"):
-                torch.nn.init.normal_(p, mean=0.0, std=0.02 / math.sqrt(2 * config.n_layer))
+                torch.nn.init.normal_(
+                    p, mean=0.0, std=0.02 / math.sqrt(2 * config.n_layer))
 
         # report number of parameters (note we don't count the decoder parameters in lm_head)
         n_params = sum(p.numel() for p in self.transformer.parameters())
@@ -176,21 +185,24 @@ class GPT(nn.Module):
         param_dict = {pn: p for pn, p in self.named_parameters()}
         inter_params = decay & no_decay
         union_params = decay | no_decay
-        assert len(inter_params) == 0, "parameters %s made it into both decay/no_decay sets!" % (str(inter_params),)
+        assert len(
+            inter_params) == 0, "parameters %s made it into both decay/no_decay sets!" % (str(inter_params),)
         assert (
             len(param_dict.keys() - union_params) == 0
         ), "parameters %s were not separated into either decay/no_decay set!" % (str(param_dict.keys() - union_params),)
 
         # create the pytorch optimizer object
         optim_groups = [
-            {"params": [param_dict[pn] for pn in sorted(list(decay))], "weight_decay": 0.1},
-            {"params": [param_dict[pn] for pn in sorted(list(no_decay))], "weight_decay": 0.0},
+            {"params": [param_dict[pn]
+                        for pn in sorted(list(decay))], "weight_decay": 0.1},
+            {"params": [param_dict[pn]
+                        for pn in sorted(list(no_decay))], "weight_decay": 0.0},
         ]
-        optimizer = torch.optim.AdamW(optim_groups, lr=config.lr, betas=(0.9, 0.95))
+        optimizer = torch.optim.AdamW(
+            optim_groups, lr=config.lr, betas=(0.9, 0.95))
         return optimizer
 
     def forward(self, idx, targets=None):
-
         """
         The forward function of the GPT model processes a sequence of token indices `idx` through the GPT architecture, 
         generating token predictions and computing optional loss if target labels are provided.
@@ -216,6 +228,34 @@ class GPT(nn.Module):
         """
         # --- TODO: start of your code ---
 
+        b, t = idx.size()  # batch size and sequence length
+
+        # Token and positional embeddings
+        token_embeddings = self.transformer.wte(idx)  # (b, t, d_model)
+        position_embeddings = self.transformer.wpe(
+            torch.arange(t, device=idx.device))  # (1, t, d_model)
+        x = token_embeddings + position_embeddings  # (b, t, d_model)
+
+        # Dropout on embeddings
+        x = self.transformer.drop(x)
+
+        # Pass through transformer blocks
+        for block in self.transformer.h:
+            x = block(x)
+
+        # Apply final layer normalization
+        x = self.transformer.ln_f(x)
+
+        # Compute logits
+        logits = self.output_head(x)  # (b, t, vocab_size)
+
+        # Compute loss if targets are provided
+        loss = None
+        if targets is not None:
+            loss = F.cross_entropy(
+                logits.view(-1, logits.size(-1)), targets.view(-1))
+
+        return logits, loss
         # --- TODO: end of your code ---
 
         raise NotImplementedError
@@ -242,7 +282,18 @@ class GPT(nn.Module):
 
         for _ in range(max_new_tokens):
             # --- TODO: start of your code ---
+            # Forward pass for current sequence
+            logits, _ = self.forward(ids)
 
+            # Get logits of the last position (the next token prediction)
+            next_token_logits = logits[:, -1, :]
+
+            # Greedy decoding: choose the token with the highest probability
+            next_token = torch.argmax(
+                next_token_logits, dim=-1, keepdim=True)  # (b, 1)
+
+            # Append the predicted token to the sequence
+            ids = torch.cat((ids, next_token), dim=1)  # (b, t+1)
             # --- TODO: end of your code ---
             pass
 
