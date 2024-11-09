@@ -8,7 +8,7 @@ from src.io import set_logging
 from src.args import Arguments, Config
 from src.trainer import Trainer
 from src.model import GPT
-
+import time
 logger = logging.getLogger(__name__)
 
 

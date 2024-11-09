@@ -1,0 +1,218 @@
+11/09/2024 12:41:31 - INFO - src.args -   Configurations:
+{
+  "batch_size": 64,
+  "d_model": 128,
+  "device": "cpu",
+  "digit_seq_len": 6,
+  "dropout": 0.1,
+  "gpt_seq_len": 11,
+  "grad_norm_clip": 1.0,
+  "gtid": "903944863",
+  "log_path": "log/record.log",
+  "lr": 0.0005,
+  "n_digits": 3,
+  "n_head": 4,
+  "n_layer": 4,
+  "n_training_steps": 200,
+  "name": "TingyuLiu",
+  "no_cuda": false,
+  "num_workers": 0,
+  "seed": 42
+}
+11/09/2024 12:41:31 - INFO - __main__ -   name: TingyuLiu
+11/09/2024 12:41:31 - INFO - __main__ -   GTID: 903944863
+11/09/2024 12:41:31 - INFO - __main__ -   Peaking at a training example:
+11/09/2024 12:41:31 - INFO - __main__ -   x = [0, 2, 1, 1, 0, 2, 0, 0, 1, 1, 2]
+11/09/2024 12:41:31 - INFO - __main__ -   y = [-1, -1, -1, -1, -1, 0, 0, 1, 1, 2, 2]
+11/09/2024 12:41:32 - INFO - src.model -   number of parameters: 0.80M
+11/09/2024 12:41:32 - INFO - src.trainer -   running on device cpu
+11/09/2024 12:42:05 - INFO - src.model -   Total Forward pass time: 31.0058s
+11/09/2024 12:43:13 - INFO - src.trainer -   iter_dt 0.00ms; iter 0: train loss 1.08330
+11/09/2024 12:43:44 - INFO - src.model -   Total Forward pass time: 31.4292s
+11/09/2024 12:45:18 - INFO - src.model -   Total Forward pass time: 31.4237s
+11/09/2024 12:46:51 - INFO - src.model -   Total Forward pass time: 31.0318s
+11/09/2024 12:48:25 - INFO - src.model -   Total Forward pass time: 30.0887s
+11/09/2024 12:49:58 - INFO - src.model -   Total Forward pass time: 31.3147s
+11/09/2024 12:51:32 - INFO - src.model -   Total Forward pass time: 31.0807s
+11/09/2024 12:53:05 - INFO - src.model -   Total Forward pass time: 30.3995s
+11/09/2024 12:54:39 - INFO - src.model -   Total Forward pass time: 31.0953s
+11/09/2024 12:56:12 - INFO - src.model -   Total Forward pass time: 30.6740s
+11/09/2024 12:57:46 - INFO - src.model -   Total Forward pass time: 31.1179s
+11/09/2024 12:59:18 - INFO - src.model -   Total Forward pass time: 30.4075s
+11/09/2024 13:00:52 - INFO - src.model -   Total Forward pass time: 30.8695s
+11/09/2024 13:02:26 - INFO - src.model -   Total Forward pass time: 30.6552s
+11/09/2024 13:03:59 - INFO - src.model -   Total Forward pass time: 30.3971s
+11/09/2024 13:05:32 - INFO - src.model -   Total Forward pass time: 30.8025s
+11/09/2024 13:07:06 - INFO - src.model -   Total Forward pass time: 31.0818s
+11/09/2024 13:08:40 - INFO - src.model -   Total Forward pass time: 31.2349s
+11/09/2024 13:10:14 - INFO - src.model -   Total Forward pass time: 31.1864s
+11/09/2024 13:11:49 - INFO - src.model -   Total Forward pass time: 31.2022s
+11/09/2024 13:13:22 - INFO - src.model -   Total Forward pass time: 30.6957s
+11/09/2024 13:14:56 - INFO - src.model -   Total Forward pass time: 30.9934s
+11/09/2024 13:16:30 - INFO - src.model -   Total Forward pass time: 30.7808s
+11/09/2024 13:18:04 - INFO - src.model -   Total Forward pass time: 30.9404s
+11/09/2024 13:19:35 - INFO - src.model -   Total Forward pass time: 30.7091s
+11/09/2024 13:21:06 - INFO - src.model -   Total Forward pass time: 30.1105s
+11/09/2024 13:22:36 - INFO - src.model -   Total Forward pass time: 29.6470s
+11/09/2024 13:24:05 - INFO - src.model -   Total Forward pass time: 29.8178s
+11/09/2024 13:25:34 - INFO - src.model -   Total Forward pass time: 29.2095s
+11/09/2024 13:27:02 - INFO - src.model -   Total Forward pass time: 27.5888s
+11/09/2024 13:28:31 - INFO - src.model -   Total Forward pass time: 31.0906s
+11/09/2024 13:30:05 - INFO - src.model -   Total Forward pass time: 31.2798s
+11/09/2024 13:31:39 - INFO - src.model -   Total Forward pass time: 30.5108s
+11/09/2024 13:33:13 - INFO - src.model -   Total Forward pass time: 31.7026s
+11/09/2024 13:34:46 - INFO - src.model -   Total Forward pass time: 31.0183s
+11/09/2024 13:36:20 - INFO - src.model -   Total Forward pass time: 30.8805s
+11/09/2024 13:37:54 - INFO - src.model -   Total Forward pass time: 30.9945s
+11/09/2024 13:39:28 - INFO - src.model -   Total Forward pass time: 31.1372s
+11/09/2024 13:41:02 - INFO - src.model -   Total Forward pass time: 30.6433s
+11/09/2024 13:42:36 - INFO - src.model -   Total Forward pass time: 31.3060s
+11/09/2024 13:44:08 - INFO - src.model -   Total Forward pass time: 31.0997s
+11/09/2024 13:45:41 - INFO - src.model -   Total Forward pass time: 30.6008s
+11/09/2024 13:47:15 - INFO - src.model -   Total Forward pass time: 30.8953s
+11/09/2024 13:48:49 - INFO - src.model -   Total Forward pass time: 31.0514s
+11/09/2024 13:50:23 - INFO - src.model -   Total Forward pass time: 30.6766s
+11/09/2024 13:51:58 - INFO - src.model -   Total Forward pass time: 31.3848s
+11/09/2024 13:53:32 - INFO - src.model -   Total Forward pass time: 30.8067s
+11/09/2024 13:55:04 - INFO - src.model -   Total Forward pass time: 29.8902s
+11/09/2024 13:56:34 - INFO - src.model -   Total Forward pass time: 30.8100s
+11/09/2024 13:58:09 - INFO - src.model -   Total Forward pass time: 31.4580s
+11/09/2024 13:59:40 - INFO - src.model -   Total Forward pass time: 30.2602s
+11/09/2024 14:01:10 - INFO - src.model -   Total Forward pass time: 29.1520s
+11/09/2024 14:02:40 - INFO - src.model -   Total Forward pass time: 29.8947s
+11/09/2024 14:04:10 - INFO - src.model -   Total Forward pass time: 29.8586s
+11/09/2024 14:05:37 - INFO - src.model -   Total Forward pass time: 30.7882s
+11/09/2024 14:07:11 - INFO - src.model -   Total Forward pass time: 30.8083s
+11/09/2024 14:08:44 - INFO - src.model -   Total Forward pass time: 30.7980s
+11/09/2024 14:10:16 - INFO - src.model -   Total Forward pass time: 30.6954s
+11/09/2024 14:11:48 - INFO - src.model -   Total Forward pass time: 30.2950s
+11/09/2024 14:13:21 - INFO - src.model -   Total Forward pass time: 30.7134s
+11/09/2024 14:14:55 - INFO - src.model -   Total Forward pass time: 30.3494s
+11/09/2024 14:16:29 - INFO - src.model -   Total Forward pass time: 31.0205s
+11/09/2024 14:18:01 - INFO - src.model -   Total Forward pass time: 30.4727s
+11/09/2024 14:19:34 - INFO - src.model -   Total Forward pass time: 31.5211s
+11/09/2024 14:21:08 - INFO - src.model -   Total Forward pass time: 30.4589s
+11/09/2024 14:22:41 - INFO - src.model -   Total Forward pass time: 30.5889s
+11/09/2024 14:24:15 - INFO - src.model -   Total Forward pass time: 30.9057s
+11/09/2024 14:25:49 - INFO - src.model -   Total Forward pass time: 30.8849s
+11/09/2024 14:27:22 - INFO - src.model -   Total Forward pass time: 30.8347s
+11/09/2024 14:28:55 - INFO - src.model -   Total Forward pass time: 30.7119s
+11/09/2024 14:30:29 - INFO - src.model -   Total Forward pass time: 30.6718s
+11/09/2024 14:32:02 - INFO - src.model -   Total Forward pass time: 30.6696s
+11/09/2024 14:33:35 - INFO - src.model -   Total Forward pass time: 30.9268s
+11/09/2024 14:35:08 - INFO - src.model -   Total Forward pass time: 30.7174s
+11/09/2024 14:36:42 - INFO - src.model -   Total Forward pass time: 31.4060s
+11/09/2024 14:38:15 - INFO - src.model -   Total Forward pass time: 31.0038s
+11/09/2024 14:39:54 - INFO - src.model -   Total Forward pass time: 31.0809s
+11/09/2024 14:41:27 - INFO - src.model -   Total Forward pass time: 30.4127s
+11/09/2024 14:43:00 - INFO - src.model -   Total Forward pass time: 31.0855s
+11/09/2024 14:44:34 - INFO - src.model -   Total Forward pass time: 31.1929s
+11/09/2024 14:46:08 - INFO - src.model -   Total Forward pass time: 30.9109s
+11/09/2024 14:47:41 - INFO - src.model -   Total Forward pass time: 30.9920s
+11/09/2024 14:49:15 - INFO - src.model -   Total Forward pass time: 30.8550s
+11/09/2024 14:50:48 - INFO - src.model -   Total Forward pass time: 30.7938s
+11/09/2024 14:52:22 - INFO - src.model -   Total Forward pass time: 31.1944s
+11/09/2024 14:53:56 - INFO - src.model -   Total Forward pass time: 30.7694s
+11/09/2024 14:55:31 - INFO - src.model -   Total Forward pass time: 31.2321s
+11/09/2024 14:57:04 - INFO - src.model -   Total Forward pass time: 30.8002s
+11/09/2024 14:58:39 - INFO - src.model -   Total Forward pass time: 31.3033s
+11/09/2024 15:00:12 - INFO - src.model -   Total Forward pass time: 30.5214s
+11/09/2024 15:01:45 - INFO - src.model -   Total Forward pass time: 30.9747s
+11/09/2024 15:03:19 - INFO - src.model -   Total Forward pass time: 31.0941s
+11/09/2024 15:04:52 - INFO - src.model -   Total Forward pass time: 31.1985s
+11/09/2024 15:06:25 - INFO - src.model -   Total Forward pass time: 30.7247s
+11/09/2024 15:07:59 - INFO - src.model -   Total Forward pass time: 31.0993s
+11/09/2024 15:09:32 - INFO - src.model -   Total Forward pass time: 30.8292s
+11/09/2024 15:11:06 - INFO - src.model -   Total Forward pass time: 31.1684s
+11/09/2024 15:12:40 - INFO - src.model -   Total Forward pass time: 31.0309s
+11/09/2024 15:14:14 - INFO - src.model -   Total Forward pass time: 31.1947s
+11/09/2024 15:15:48 - INFO - src.model -   Total Forward pass time: 31.0934s
+11/09/2024 15:17:21 - INFO - src.model -   Total Forward pass time: 30.9049s
+11/09/2024 15:18:23 - INFO - src.trainer -   iter_dt 93085.66ms; iter 100: train loss 0.06267
+11/09/2024 15:18:54 - INFO - src.model -   Total Forward pass time: 30.6988s
+11/09/2024 15:20:27 - INFO - src.model -   Total Forward pass time: 30.5449s
+11/09/2024 15:22:00 - INFO - src.model -   Total Forward pass time: 31.2026s
+11/09/2024 15:23:34 - INFO - src.model -   Total Forward pass time: 30.7879s
+11/09/2024 15:25:06 - INFO - src.model -   Total Forward pass time: 30.7236s
+11/09/2024 15:26:40 - INFO - src.model -   Total Forward pass time: 31.1986s
+11/09/2024 15:28:13 - INFO - src.model -   Total Forward pass time: 30.6923s
+11/09/2024 15:29:47 - INFO - src.model -   Total Forward pass time: 31.1282s
+11/09/2024 15:31:20 - INFO - src.model -   Total Forward pass time: 30.1703s
+11/09/2024 15:32:53 - INFO - src.model -   Total Forward pass time: 30.5931s
+11/09/2024 15:34:26 - INFO - src.model -   Total Forward pass time: 30.9023s
+11/09/2024 15:35:59 - INFO - src.model -   Total Forward pass time: 31.0668s
+11/09/2024 15:37:34 - INFO - src.model -   Total Forward pass time: 31.0062s
+11/09/2024 15:39:07 - INFO - src.model -   Total Forward pass time: 30.8040s
+11/09/2024 15:40:40 - INFO - src.model -   Total Forward pass time: 30.7958s
+11/09/2024 15:42:14 - INFO - src.model -   Total Forward pass time: 31.0090s
+11/09/2024 15:43:48 - INFO - src.model -   Total Forward pass time: 30.9040s
+11/09/2024 15:45:22 - INFO - src.model -   Total Forward pass time: 31.0112s
+11/09/2024 15:46:55 - INFO - src.model -   Total Forward pass time: 30.6227s
+11/09/2024 15:48:29 - INFO - src.model -   Total Forward pass time: 31.1991s
+11/09/2024 15:50:03 - INFO - src.model -   Total Forward pass time: 31.1023s
+11/09/2024 15:51:36 - INFO - src.model -   Total Forward pass time: 30.5883s
+11/09/2024 15:53:09 - INFO - src.model -   Total Forward pass time: 30.5855s
+11/09/2024 15:54:43 - INFO - src.model -   Total Forward pass time: 30.7988s
+11/09/2024 15:56:16 - INFO - src.model -   Total Forward pass time: 31.0405s
+11/09/2024 15:57:49 - INFO - src.model -   Total Forward pass time: 30.8927s
+11/09/2024 15:59:22 - INFO - src.model -   Total Forward pass time: 30.6166s
+11/09/2024 16:00:56 - INFO - src.model -   Total Forward pass time: 31.0346s
+11/09/2024 16:02:26 - INFO - src.model -   Total Forward pass time: 29.8916s
+11/09/2024 16:03:58 - INFO - src.model -   Total Forward pass time: 30.7225s
+11/09/2024 16:05:31 - INFO - src.model -   Total Forward pass time: 30.7313s
+11/09/2024 16:07:05 - INFO - src.model -   Total Forward pass time: 31.0100s
+11/09/2024 16:08:39 - INFO - src.model -   Total Forward pass time: 30.5946s
+11/09/2024 16:10:12 - INFO - src.model -   Total Forward pass time: 30.5787s
+11/09/2024 16:11:44 - INFO - src.model -   Total Forward pass time: 30.6229s
+11/09/2024 16:13:19 - INFO - src.model -   Total Forward pass time: 30.9049s
+11/09/2024 16:14:52 - INFO - src.model -   Total Forward pass time: 30.9226s
+11/09/2024 16:16:25 - INFO - src.model -   Total Forward pass time: 30.3933s
+11/09/2024 16:17:58 - INFO - src.model -   Total Forward pass time: 31.1186s
+11/09/2024 16:19:31 - INFO - src.model -   Total Forward pass time: 30.9917s
+11/09/2024 16:21:05 - INFO - src.model -   Total Forward pass time: 31.2043s
+11/09/2024 16:22:38 - INFO - src.model -   Total Forward pass time: 30.7844s
+11/09/2024 16:24:11 - INFO - src.model -   Total Forward pass time: 30.4104s
+11/09/2024 16:25:45 - INFO - src.model -   Total Forward pass time: 31.3635s
+11/09/2024 16:27:18 - INFO - src.model -   Total Forward pass time: 31.0031s
+11/09/2024 16:28:51 - INFO - src.model -   Total Forward pass time: 31.0853s
+11/09/2024 16:30:25 - INFO - src.model -   Total Forward pass time: 31.1990s
+11/09/2024 16:31:58 - INFO - src.model -   Total Forward pass time: 30.9024s
+11/09/2024 16:33:32 - INFO - src.model -   Total Forward pass time: 30.9013s
+11/09/2024 16:35:06 - INFO - src.model -   Total Forward pass time: 31.2578s
+11/09/2024 16:36:39 - INFO - src.model -   Total Forward pass time: 31.2800s
+11/09/2024 16:38:14 - INFO - src.model -   Total Forward pass time: 31.4109s
+11/09/2024 16:39:47 - INFO - src.model -   Total Forward pass time: 30.8730s
+11/09/2024 16:41:20 - INFO - src.model -   Total Forward pass time: 30.7111s
+11/09/2024 16:42:53 - INFO - src.model -   Total Forward pass time: 30.8146s
+11/09/2024 16:44:27 - INFO - src.model -   Total Forward pass time: 30.5093s
+11/09/2024 16:46:01 - INFO - src.model -   Total Forward pass time: 31.0452s
+11/09/2024 16:47:34 - INFO - src.model -   Total Forward pass time: 30.7903s
+11/09/2024 16:49:07 - INFO - src.model -   Total Forward pass time: 30.8958s
+11/09/2024 16:50:41 - INFO - src.model -   Total Forward pass time: 31.3089s
+11/09/2024 16:52:16 - INFO - src.model -   Total Forward pass time: 31.0946s
+11/09/2024 16:53:50 - INFO - src.model -   Total Forward pass time: 30.4420s
+11/09/2024 16:55:24 - INFO - src.model -   Total Forward pass time: 31.1880s
+11/09/2024 16:56:58 - INFO - src.model -   Total Forward pass time: 31.1220s
+11/09/2024 16:58:30 - INFO - src.model -   Total Forward pass time: 30.1078s
+11/09/2024 16:59:57 - INFO - src.model -   Total Forward pass time: 29.6097s
+11/09/2024 17:01:23 - INFO - src.model -   Total Forward pass time: 27.9968s
+11/09/2024 17:02:48 - INFO - src.model -   Total Forward pass time: 27.4931s
+11/09/2024 17:04:14 - INFO - src.model -   Total Forward pass time: 29.9999s
+11/09/2024 17:05:52 - INFO - src.model -   Total Forward pass time: 31.2242s
+11/09/2024 17:07:25 - INFO - src.model -   Total Forward pass time: 31.0090s
+11/09/2024 17:09:00 - INFO - src.model -   Total Forward pass time: 31.3036s
+11/09/2024 17:10:33 - INFO - src.model -   Total Forward pass time: 30.3064s
+11/09/2024 17:12:07 - INFO - src.model -   Total Forward pass time: 30.7085s
+11/09/2024 17:13:41 - INFO - src.model -   Total Forward pass time: 31.2927s
+11/09/2024 17:15:15 - INFO - src.model -   Total Forward pass time: 31.0840s
+11/09/2024 17:16:48 - INFO - src.model -   Total Forward pass time: 30.8164s
+11/09/2024 17:18:21 - INFO - src.model -   Total Forward pass time: 30.8893s
+11/09/2024 17:19:55 - INFO - src.model -   Total Forward pass time: 30.9020s
+11/09/2024 17:21:28 - INFO - src.model -   Total Forward pass time: 30.6883s
+11/09/2024 17:23:01 - INFO - src.model -   Total Forward pass time: 30.8054s
+11/09/2024 17:24:35 - INFO - src.model -   Total Forward pass time: 30.7108s
+11/09/2024 17:26:08 - INFO - src.model -   Total Forward pass time: 30.5949s
+11/09/2024 17:27:42 - INFO - src.model -   Total Forward pass time: 31.1804s
+11/09/2024 17:29:16 - INFO - src.model -   Total Forward pass time: 31.1846s
+11/09/2024 17:30:50 - INFO - src.model -   Total Forward pass time: 30.8669s
+11/09/2024 17:32:23 - INFO - src.model -   Total Forward pass time: 30.8525s

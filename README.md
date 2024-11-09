@@ -130,3 +130,34 @@ zip -r <GivenName>.<FamilyName>.<GTID>.zip log/ src/
 10/21/2024 18:23:53 - INFO - __main__ -   gt sort          :[0, 0, 0, 1, 1, 2]
 10/21/2024 18:23:53 - INFO - __main__ -   matches          :True
 ```
+## Get started with ice pace HPC
+1. connect to school VPN
+2.  Use SSH to connect to **login-ice.pace.gatech.edu** with gtid SSO info.
+
+3. Use *pyenv* for enviroment:
+    ```bash
+    curl https://pyenv.run | bash
+
+    cd ~/.pyenv && src/configure && make -C src
+
+    # set global python version to 3.10
+    pyenv install 3.10
+
+    pyenv global 3.10
+
+    pyenv virtualenv 3101
+
+    pyenv activate 3101
+
+  ```
+
+4. download requirement packages
+
+  ```bash
+    # ignore requirements.txt due to numpy version conflict
+    
+    pip3 install regex
+    pip3 install torch
+    pip3 install transformers
+  ``` 
+

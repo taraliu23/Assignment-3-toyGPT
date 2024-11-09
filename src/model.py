@@ -9,6 +9,8 @@ import torch
 import torch.nn as nn
 from torch.nn import functional as F
 
+import time
+
 from src.args import Config
 
 logger = logging.getLogger(__name__)
@@ -25,7 +27,7 @@ class GELU(nn.Module):
         Returns the GELU activation of the input x.
         """
         # --- TODO: start of your code ---
-        return 0.5 * x * (1 + torch.tanh(math.sqrt(2 / math.pi) * (x + 0.044715 * x ** 3)))
+        return 0.5 * x * (1.0 + torch.tanh(math.sqrt(2.0 / math.pi) * (x + 0.044715 * torch.pow(x, 3.0))))
         # --- TODO: end of your code ---
         raise NotImplementedError
 
@@ -226,39 +228,33 @@ class GPT(nn.Module):
 
         Hint: First, you can generate token embeddings using the input token indices and the model's token embedding layer. Similarly, generate position embeddings using the positions (ranging from 0 to the length of the sequence) and the position embedding layer.
         """
-        # --- TODO: start of your code ---
+        # --- #TODO: start of your code ---
+        total_start_time = time.time()  
+        device = idx.device
 
-        b, t = idx.size()  # batch size and sequence length
+        b, t = idx.size()
 
-        # Token and positional embeddings
-        token_embeddings = self.transformer.wte(idx)  # (b, t, d_model)
-        position_embeddings = self.transformer.wpe(
-            torch.arange(t, device=idx.device))  # (1, t, d_model)
-        x = token_embeddings + position_embeddings  # (b, t, d_model)
+        # positional token
+        pos = torch.arange(0, t, dtype=torch.long, device=device).unsqueeze(0) 
 
-        # Dropout on embeddings
-        x = self.transformer.drop(x)
-
-        # Pass through transformer blocks
+        tok_emb = self.transformer.wte(idx) 
+        pos_emb = self.transformer.wpe(pos) 
+        x = self.transformer.drop(tok_emb + pos_emb)
         for block in self.transformer.h:
             x = block(x)
-
-        # Apply final layer normalization
+        
         x = self.transformer.ln_f(x)
+        logits = self.output_head(x)
 
-        # Compute logits
-        logits = self.output_head(x)  # (b, t, vocab_size)
-
-        # Compute loss if targets are provided
         loss = None
         if targets is not None:
-            loss = F.cross_entropy(
-                logits.view(-1, logits.size(-1)), targets.view(-1))
-
+            loss = F.cross_entropy(logits.view(-1, logits.size(-1)), targets.view(-1), ignore_index=-1)
+        logger.info(f"Total Forward pass time: {time.time() - total_start_time:.4f}s")  # Log the total time for the forward pass
         return logits, loss
+    
         # --- TODO: end of your code ---
 
-        raise NotImplementedError
+        # raise NotImplementedError
 
     @torch.no_grad()
     def inference(self, ids, max_new_tokens):
@@ -282,18 +278,14 @@ class GPT(nn.Module):
 
         for _ in range(max_new_tokens):
             # --- TODO: start of your code ---
-            # Forward pass for current sequence
             logits, _ = self.forward(ids)
 
-            # Get logits of the last position (the next token prediction)
             next_token_logits = logits[:, -1, :]
 
-            # Greedy decoding: choose the token with the highest probability
             next_token = torch.argmax(
-                next_token_logits, dim=-1, keepdim=True)  # (b, 1)
+                next_token_logits, dim=-1, keepdim=True)  
 
-            # Append the predicted token to the sequence
-            ids = torch.cat((ids, next_token), dim=1)  # (b, t+1)
+            ids = torch.cat((ids, next_token), dim=1)  
             # --- TODO: end of your code ---
             pass
 
